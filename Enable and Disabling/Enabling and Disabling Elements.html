@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+   <script>
+   $(document).ready(function(){
+		//Selct Option
+	   $('#SelectOption').on('change', function (e) {
+			//Get selected
+			var selectedOption = $(this).children("option:selected").val();
+			
+			//Disable selected
+			if(selectedOption == "Enable"){
+				$("#FullName").prop('disabled', false);
+			}
+			//Enable selected
+			else if(selectedOption == "Disable"){
+				$("#FullName").prop('disabled', true);
+			}
+		});
+		
+		//Checkbox Option
+		$('#CheckOption').click(function(){
+			if($(this).prop("checked") == true){
+				
+				//Enable selected
+				$("#FullName").prop('disabled', true);
+			}
+			else if($(this).prop("checked") == false){
+				
+				//Disable selected
+				$("#FullName").prop('disabled', false);
+			}
+        });
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		//Selct Option Show/Hide
+	   $('#ShowHideOption').on('change', function (e) {
+			//Get selected
+			var selectedOption = $(this).children("option:selected").val();
+			
+			//Show div
+			if(selectedOption == "Show"){
+				$("#ShowHideDiv").show();
+			}
+			//Hide div
+			else if(selectedOption == "Hide"){
+				$("#ShowHideDiv").hide();
+			}
+		});
+		
+		//Checkbox Option Show/Hide
+		$('#ShowHideCheckbox').click(function(){
+			if($(this).prop("checked") == true){
+				
+				//hide div
+				$("#ShowHideDiv").hide();
+			}
+			else if($(this).prop("checked") == false){
+				
+				//show div
+				$("#ShowHideDiv").show();
+			}
+        });
+		
+	});
+   </script>
+   
+</head>
+<body>
+
+<div class="container">
+  <h1>Enable/Disable Select Option</h1>
+  <form action="/action_page.php">
+  
+  <div class="form-group">
+	  <label for="sel1">Select option:</label>
+	  <select class="form-control" id="SelectOption">
+	    <option value = "">Choose</option>
+		<option value = "Enable">Enable</option>
+		<option value = "Disable">Disable</option>
+	  </select>
+	</div>
+	<div class="form-check-inline">
+      <label class="form-check-label" for="check2">
+        <input type="checkbox" class="form-check-input" id="CheckOption" name="CheckOption" value="1">Enable/Disable
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="usr">Name:</label>
+      <input type="text" class="form-control" id="FullName" name="FullName">
+    </div>
+  </form>
+</div>
+<hr/>
+<div class="container">
+  <h1>Show/Hide </h1>
+  <form action="/action_page.php">
+  
+  <div class="form-group">
+	  <label for="sel1">Select option:</label>
+	  <select class="form-control" id="ShowHideOption">
+	    <option value = "">Choose</option>
+		<option value = "Show">Show</option>
+		<option value = "Hide">Hide</option>
+	  </select>
+	</div>
+	<div class="form-check-inline">
+      <label class="form-check-label" for="check2">
+        <input type="checkbox" class="form-check-input" id="ShowHideCheckbox" name="ShowHideCheckbox" value="1">Show/Hide
+      </label>
+    </div>
+    <div class="form-group bg-info p-4" id="ShowHideDiv">
+      <h1>
+		Div to Show/Hide
+	  </h1>
+    </div>
+  </form>
+</div>
+</body>
+</html>

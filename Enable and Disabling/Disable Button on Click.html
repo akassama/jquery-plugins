@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script>
+  // A $( document ).ready() block.
+  $( document ).ready(function() {
+      $(".disable-on-click").on('click', function(event){
+      	var clickedBtnID = $(this).attr('id');
+      	//wait 1.5 seconds before disabling button
+        setTimeout(
+        function() 
+        {
+          var button_text = $("#"+clickedBtnID).text();
+          $("#"+clickedBtnID).html("<i class='fas fa-spinner fa-spin'></i> "+ button_text);
+          $("#"+clickedBtnID).attr("disabled", true);
+        }, 1500);
+      });
+  });
+  </script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Disable Button on Click</h2>
+  <button type="button" id="Basic" class="btn disable-on-click">Basic</button>
+  <button type="button" id="Primary" class="btn btn-primary disable-on-click">Primary</button>
+  <button type="button" id="Secondary" class="btn btn-secondary disable-on-click">Secondary</button>
+  <button type="button" id="Success" class="btn btn-success disable-on-click">Success</button>
+  <button type="button" id="Info" class="btn btn-info disable-on-click">Info</button>
+  <button type="button" id="Warning" class="btn btn-warning disable-on-click">Warning</button>
+  <button type="button" id="Danger" class="btn btn-danger disable-on-click">Danger</button>
+  <button type="button" id="Dark" class="btn btn-dark disable-on-click">Dark</button>
+  <button type="button" id="Light" class="btn btn-light disable-on-click">Light</button>
+  <button type="button" id="Link" class="btn btn-link disable-on-click">Link</button>      
+</div>
+
+</body>
+</html>
