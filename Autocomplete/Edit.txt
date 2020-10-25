@@ -1,0 +1,3 @@
+Added auto-complete to div and changed the css to modify anchors.
+
+Added $(document).on('click', function (e)) in index.html to Close results when you click outside
