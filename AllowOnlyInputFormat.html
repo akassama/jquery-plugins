@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+<h2>Numbers Only Form</h2>
+<h2>jQuery input filter showcase</h2>
+<p>Supports Copy+Paste, Drag+Drop, keyboard shortcuts, context menu operations, non-typeable keys, the caret position, different keyboard layouts, and <a href="https://caniuse.com/#feat=input-event" target="_blank">all browsers since IE 9</a>.</p>
+<table class="table">
+  <tr><td>Integer</td><td><input class="form-control integer-only"></td></tr>
+  <tr><td>Integer &gt;= 0</td><td><input class="form-control integer-plus-only"></td></tr>
+  <tr><td>Integer &gt;= 0 and &lt;= 500</td><td><input class="form-control integer-range"></td></tr>
+  <tr><td>Float (use . or , as decimal separator)</td><td><input class="form-control float-number"></td></tr>
+  <tr><td>Currency (at most two decimal places)</td><td><input class="form-control currency-number"></td></tr>
+  <tr><td>A-Z only</td><td><input class="form-control latin-only"></td></tr>
+  <tr><td>Hexadecimal</td><td><input class="form-control hex-text"></td></tr>
+</table>
+</div>
+
+<!-- https://stackoverflow.com/a/995193/5612132  https://jsfiddle.net/emkey08/tvx5e7q3 -->
+<!-- Place Scripts After Inputs -->
+<script type="text/javascript" language="javascript">
+
+$(document).ready(function () {
+	// Restricts input for each element in the set of matched elements to the given inputFilter.
+	(function($) {
+	  $.fn.inputFilter = function(inputFilter) {
+		return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+		  if (inputFilter(this.value)) {
+			this.oldValue = this.value;
+			this.oldSelectionStart = this.selectionStart;
+			this.oldSelectionEnd = this.selectionEnd;
+		  } else if (this.hasOwnProperty("oldValue")) {
+			this.value = this.oldValue;
+			this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+		  } else {
+			this.value = "";
+		  }
+		});
+	  };
+	}(jQuery));
+
+	// Install input filters.
+	$(".integer-only").inputFilter(function(value) {
+	  return /^-?\d*$/.test(value); 
+	});
+
+	$(".integer-plus-only").inputFilter(function(value) {
+	  return /^\d*$/.test(value); 
+	});
+
+	$(".integer-range").inputFilter(function(value) {
+	  return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500); 
+	});
+
+	$(".float-number").inputFilter(function(value) {
+	  return /^-?\d*[.,]?\d*$/.test(value); 
+	});
+
+	$(".currency-number").inputFilter(function(value) {
+	  return /^-?\d*[.,]?\d{0,2}$/.test(value); 
+	});
+
+	$(".latin-only").inputFilter(function(value) {
+	  return /^[a-z]*$/i.test(value); 
+	});
+	
+	$(".letters-only").inputFilter(function(value) {
+	  return /^[a-z ]*$/i.test(value); 
+	});
+
+	$(".hex-text").inputFilter(function(value) {
+	  return /^[0-9a-f]*$/i.test(value); 
+	});
+
+});
+</script>
+</body>
+</html>
